@@ -1,14 +1,21 @@
 FROM ubuntu:14.04
 MAINTAINER Liu Siyuan <SLIU019@e.ntu.edu.sg>
 
+# Set anaconda path
 ENV ANACONDA /opt/anaconda
 ENV PATH $ANACONDA/bin:$PATH
 
+# Download anaconda and install it
 RUN apt-get update && apt-get install -y wget
 RUN wget http://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh -P /tmp
 RUN bash /tmp/Anaconda2-4.0.0-Linux-x86_64.sh -b -p $ANACONDA
 RUN rm /tmp/Anaconda2-4.0.0-Linux-x86_64.sh
 
-WORKDIR /root
+# Add Tini
+ENV TINI_VERSION v0.9.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+ENTRYPOINT ["/tini", "--"]
 
-CMD ["jupyter", "notebook"]
+# Default command is to run a jupyter notebook at 0.0.0.0:8888
+CMD ["jupyter", "notebook", "--no-browser", "--ip=0.0.0.0"]
