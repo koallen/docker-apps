@@ -11,11 +11,16 @@ RUN wget http://repo.continuum.io/archive/Anaconda2-4.0.0-Linux-x86_64.sh -P /tm
 RUN bash /tmp/Anaconda2-4.0.0-Linux-x86_64.sh -b -p $ANACONDA
 RUN rm /tmp/Anaconda2-4.0.0-Linux-x86_64.sh
 
+# Copy the config file into docker
+RUN mkdir /root/.jupyter
+ADD jupyter_notebook_config.py  /root/.jupyter
+ADD matplotlib_init.py /root/.ipython/profile_default/startup
+
 # Add Tini
 ENV TINI_VERSION v0.9.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-# Default command is to run a jupyter notebook at 0.0.0.0:8888
-CMD ["jupyter", "notebook", "--no-browser", "--ip=0.0.0.0"]
+# Default command is to run a jupyter notebook at 0.0.0.0:8888 in headless mode
+CMD ["jupyter", "notebook"]
