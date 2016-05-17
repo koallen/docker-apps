@@ -12,7 +12,7 @@ RUN bash /tmp/Anaconda2-4.0.0-Linux-x86_64.sh -b -p $ANACONDA
 RUN rm /tmp/Anaconda2-4.0.0-Linux-x86_64.sh
 
 # Copy the config file into docker
-RUN mkdir /root/.jupyter
+RUN jupyter notebook --generate-config && ipython profile create
 ADD jupyter_notebook_config.py  /root/.jupyter
 ADD matplotlib_init.py /root/.ipython/profile_default/startup
 
