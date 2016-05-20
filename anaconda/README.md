@@ -1,4 +1,4 @@
-# Anaconda
+# Anaconda v4.0.0
 
 This is a docker container for anaconda and jupyter (ipython).
 
