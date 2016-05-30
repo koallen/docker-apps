@@ -8,6 +8,7 @@ RUN apt-get install -y wget unzip
 # Download MXNet and install it
 WORKDIR /root
 RUN git clone --recursive https://github.com/dmlc/mxnet
+ADD config.mk /root/mxnet/config.mk
 
 WORKDIR /root/mxnet
 RUN make -j$(nproc)
