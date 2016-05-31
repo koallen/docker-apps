@@ -17,3 +17,6 @@ RUN make -j$(nproc)
 WORKDIR /root/mxnet/python
 RUN apt-get install -y python-numpy python-setuptools
 RUN python setup.py install
+
+# Change workdir
+WORKDIR /root
