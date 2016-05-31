@@ -22,5 +22,8 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
+# Change workdir
+WORKDIR /root/workspace
+
 # Default command is to run a jupyter notebook at 0.0.0.0:8888 in headless mode
 CMD ["jupyter", "notebook"]
