@@ -1,3 +1,5 @@
+import os
+
 # Configuration file for jupyter-notebook.
 
 #------------------------------------------------------------------------------
@@ -198,7 +200,10 @@ c.NotebookApp.open_browser = False
 #   from notebook.auth import passwd; passwd()
 #
 # The string should be of the form type:salt:hashed-password.
-# c.NotebookApp.password = u'sha1:<your salt>:<your hashed password>'
+if 'PASSWORD' in os.environ:
+    from notebook.auth import passwd
+    c.NotebookApp.password = passwd(os.environ['PASSWORD'])
+    del os.environ['PASSWORD']
 
 # The port the notebook server will listen on.
 c.NotebookApp.port = 8888
