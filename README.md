@@ -5,8 +5,8 @@ A collection of applications running in docker containers
 - Anaconda (koallen/anaconda:cpu)
 - Anaconda with CUDA (koallen/anaconda:gpu)
 - MXNet with CUDA
-- MXNet with CUDA and Anaconda
-- Caffe with CUDA and Anaconda
+- MXNet with CUDA and Anaconda (koallen/anaconda-mxnet:gpu)
+- Caffe with CUDA and Anaconda (koallen/anaconda-caffe:gpu)
 
 ## Folder naming convention
 The names of the folders reflect the inheritance relationship between docker images.
