@@ -7,7 +7,7 @@ To run the container, simply type
 ```bash
 $ docker run -d -p <your port>:8888 --name anaconda \
              -v <your directory>:/root/workspace \
-             koallen/anaconda:gpu
+             koallen/anaconda-mxnet:gpu
 ```
 Some explanation for the flags:
 - `-d` is to run the container as a daemon
@@ -22,5 +22,5 @@ variable `PASSWORD`:
 $ docker run -d -p <your port>:8888 --name anaconda \
              -v <your directory>:/root/workspace \
              -e PASSWORD=<your password>
-             koallen/anaconda:gpu
+             koallen/anaconda-mxnet:gpu
 ```
