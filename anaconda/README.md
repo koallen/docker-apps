@@ -1,30 +1,26 @@
 # Anaconda v4.0.0
 
-This is a docker container for anaconda and jupyter (ipython).
-
-## Building the container
-To build the container, simply type
-```bash
-$ docker build -t koallen/anaconda:cpu .
-```
+This is a docker container for Anaconda and Jupyter (IPython).
 
 ## Running the container
 To run the container, simply type
 ```bash
-$ docker run -d -p 8888:8888 --name anaconda \
-             -v ~/workspace:/root/workspace \
+$ docker run -d -p <your port>:8888 --name anaconda \
+             -v <your directory>:/root/workspace \
              koallen/anaconda:cpu
 ```
-
-This will open the Jupyter port to the host, and mount a host directory into the container.
+Some explanation for the flags:
+- `-d` is to run the container as a daemon
+- `-p` is to map port 8888 of the container to a port on your machine (Jupyter is running on port 8888)
+- `-v` is to mount a directory on your machine to the container
 
 ## Adding a password for Jupyter
 If you want to run this container in a remote environment, you may want to protect your
 Jupyter with a password. To do so, pass your password into the container as the environment
-variable `PASSWORD`. For example, you may run the following command to add a password `1234`:
+variable `PASSWORD`:
 ```bash
-$ docker run -d -p 8888:8888 --name anaconda \
-             -v ~/workspace:/root/workspace \
-             -e PASSWORD=1234
+$ docker run -d -p <your port>:8888 --name anaconda \
+             -v <your directory>:/root/workspace \
+             -e PASSWORD=<your password>
              koallen/anaconda:cpu
 ```
