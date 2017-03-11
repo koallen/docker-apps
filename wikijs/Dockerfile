@@ -6,4 +6,4 @@ WORKDIR /wiki-js
 RUN npm install wiki.js@latest
 
 EXPOSE 80
-CMD ["node", "wiki", "start"]
+CMD ["pm2-docker", "wiki", "start"]
